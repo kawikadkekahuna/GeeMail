@@ -1,0 +1,42 @@
+<html>
+<head>
+    <script src="js/mail-generator.js"></script>
+    <link href="css/style.css" rel="stylesheet" media="screen">
+
+    <script>
+        window.onload = function () {
+            "use strict";
+            loadGeeMails();
+            var backgroundFade;
+            var preview = "<table id = 'preview'>" + "<th>Date:</th>" + "<th>Sender</th>" + "<th>Subject</th>";
+            var display = [];
+
+            for (var i = 0; i <= 10; i++) {
+
+                display[i] = generateMessage();
+                var mSender = "<td>" + display[i].sender + "</td>";
+                var mDate = "<td>" + display[i].date.toString().substring(4, 15) + "</td>";
+                var mSubject = "<td>" + display[i].subject + "</td>";
+                var previewBody = display[i].body.substring(0, 51) + "...";
+                preview += "<tr>" + mDate + mSender + mSubject + "</tr>";
+
+            }
+
+
+            document.getElementById("main").innerHTML = preview;
+
+
+        }
+    </script>
+</head>
+<body>
+<h1>Geemail</h1>
+
+<div class="left" id="main">
+
+
+</div>
+
+
+</body>
+</html>
