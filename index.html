@@ -1,41 +1,56 @@
+
 <html>
 <head>
     <script src="js/mail-generator.js"></script>
     <link href="css/style.css" rel="stylesheet" media="screen">
-
     <script>
-        window.onload = function () {
-            "use strict";
+        window.onload = function(){
+            // ALL OF YOUR JAVASCRIPT CODE SHOULD GO HERE/
             loadGeeMails();
-            var backgroundFade;
-            var preview = "<table id = 'preview'>" + "<th>Date:</th>" + "<th>Sender</th>" + "<th>Subject</th>";
-            var display = [];
+            var rIndex = new Array;
+            var index = 0;
+            var display = new Array;
+            var switchBG = true;
+            var build = "<table id = 'table'>";
+            var newElement;
 
-            for (var i = 0; i <= 10; i++) {
+            var gen = function () {
 
-                display[i] = generateMessage();
-                var mSender = "<td>" + display[i].sender + "</td>";
-                var mDate = "<td>" + display[i].date.toString().substring(4, 15) + "</td>";
-                var mSubject = "<td>" + display[i].subject + "</td>";
-                var previewBody = display[i].body.substring(0, 51) + "...";
-                preview += "<tr>" + mDate + mSender + mSubject + "</tr>";
-
-            }
-
-
-            document.getElementById("main").innerHTML = preview;
+                display[index] = generateMessage();
+                newElement = document.createElement('span');
+                newElement.setAttribute('id', index.toString());
+                build += "<tr><td>" + display[index].date.toString().substring(4,15) + "</td><td>" + display[index].sender + "</td><td>" + display[index].subject +  "</td><td>" + newElement.getAttribute('id') +  "</td></tr>";
+                document.getElementById("displayHead").innerHTML = build + "</table>";
+                index++;
 
 
-        }
+
+
+
+
+
+            };
+
+            gen();
+
+            var onClick = document.getElementById("table");
+
+            onClick.addEventListener('click', function(){
+                //document.getElementById("displayBody").innerHTML = newElement[newElement.getAttribute('id')];
+                alert(d);
+            }, false);
+
+
+
+        };
     </script>
 </head>
 <body>
-<h1>Geemail</h1>
-
-<div class="left" id="main">
-
-
-</div>
+<h1>GeeMail</h1>
+<div id="messageCount"></div>
+<table id="labels"><th>Date:</th><th>Sender:</th><th>Subject:</th></table>
+<div class="container" id="displayHead"></div>
+<div id="displayBody"></div>
 
 
 </body>
