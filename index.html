@@ -48,7 +48,6 @@
                 body.setAttribute('id', 'message');
                 body.innerHTML = display[index].body;
                 document.getElementById('inbox').innerHTML += tag.innerHTML;
-                alert(tag.id);
                 index++;
             }
 
@@ -56,7 +55,12 @@
                 gen();
             }
 
-            setInterval(gen, 1000);
+            setInterval(gen, 15000);
+
+            document.getElementById('inbox').addEventListener('click', function(){
+
+                document.getElementById('displayBody').innerHTML = body.innerHTML;
+            })
 
 
         }
